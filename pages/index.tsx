@@ -5,12 +5,12 @@ import DelivrooIllustration from "/public/assets/delivroo-illustration.svg";
 import ApplePlayStore from "/public/assets/icons/app-store.svg";
 import { Title } from "../components/Typography/Typography";
 import { Button } from "../components/Buttons/Buttons";
+import Footer from "../components/Footer/Footer";
 
 export default function Home() {
   return (
     <>
       <Header />
-
       <section className='container py-[50px] '>
         <Title>À la carte</Title>
 
@@ -152,6 +152,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </>
   );
 }
