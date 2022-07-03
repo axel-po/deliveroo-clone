@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://use.typekit.net/egp5hvy.css");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap");
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    font-family: stratos, sans-serif;
+  }
+
+  body {
+    @apply text-black;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.clip-img {
+  clip-path: polygon(0 0, 100% 0, 88% 100%, 0% 100%);
+}
+
+.clip-left-img {
+  clip-path: polygon(6% 0, 100% 0, 100% 100%, 0% 100%);
+}
