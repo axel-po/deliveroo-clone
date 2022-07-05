@@ -14,7 +14,7 @@ export default function Home() {
       <section className='container py-[50px] '>
         <Title>À la carte</Title>
 
-        <div className='grid grid-cols-12  gap-[30px]'>
+        <div className='grid md:grid-cols-2 gap-[30px] grid-cols-12'>
           <article className='col-span-5'>
             <div className="flex justify-center items-center h-[150px] text-white text-4xl font-semibold cursor-pointer bg-cover bg-center bg-[url('https://f.roocdn.com/images/menu_tags/285/menu-tag-image.jpg?width=860&height=300&auto=webp&format=jpg&fit=crop&v=1653042905')]">
               <h3>Repas d affaires</h3>
