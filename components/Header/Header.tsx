@@ -1,13 +1,14 @@
-import React from "react";
+import Image from "next/image";
 import Nav from "../Nav/Nav";
 import { Button } from "../Buttons/Buttons";
+import HeaderIllustation from "/public/assets/header-illustration.svg";
 
 export default function Header() {
   return (
-    <header className='h-[500px] bg-[#D0EB99]'>
+    <header className=" h-[500px] bg-[#D0EB99] before:content-[''] before:absolute before:r-0 before-t-0 before:bg-[#00ccbc] before:w-full before:h-[256px] before:origin-center before:-skew-y-3 ">
       <Nav />
       <div className='flex items-center  h-full container'>
-        <div className='w-6/12'>
+        <div className='w-6/12 z-10'>
           <h2 className='text-violet leading-[48px] text-[40px] font-semibold pb-[32px]'>Vos restaurants préférés, livrés chez vous en un clic</h2>
           <form className='bg-white p-[32px] rounded font-plexSans'>
             <label htmlFor='adress'>Entrez votre adresse pour trouver les restaurants à proximité</label>
@@ -18,11 +19,10 @@ export default function Header() {
           </form>
         </div>
 
-        <div className='w-6/12'></div>
+        <div className='flex items-end justify-center w-6/12'>
+          <Image src={HeaderIllustation} alt='header illustration' width='426' height='410' />
+        </div>
       </div>
     </header>
   );
 }
-
-
-// AIzaSyCBrWS_rqVoTFR6DVl-8L7i1tq2lbNRVtc

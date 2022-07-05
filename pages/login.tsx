@@ -5,7 +5,7 @@ import Footer from "../components/Footer/Footer";
 import Nav from "../components/Nav/Nav";
 
 export default function login() {
-  const [click, setClick] = useState<boolean>(true);
+  const [click, setClick] = useState<boolean>(false);
 
   return (
     <>
