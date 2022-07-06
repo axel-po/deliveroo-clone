@@ -5,21 +5,23 @@ import HeaderIllustation from "/public/assets/header-illustration.svg";
 
 export default function Header() {
   return (
-    <header className=" h-[500px] bg-[#D0EB99] before:content-[''] before:absolute before:r-0 before-t-0 before:bg-[#00ccbc] before:w-full before:h-[256px] before:origin-center before:-skew-y-3 ">
+    <header className=" pb-[20px] min-h-[500px] bg-[#D0EB99] before:content-[''] before:absolute before:right-0 before:top-[-10%] before:bg-[#00ccbc] before:w-full before:h-[297px] before:origin-center before:-skew-y-3 ">
       <Nav />
-      <div className='flex items-center  h-full container'>
-        <div className='w-6/12 z-10'>
-          <h2 className='text-violet leading-[48px] text-[40px] font-semibold pb-[32px]'>Vos restaurants préférés, livrés chez vous en un clic</h2>
-          <form className='bg-white p-[32px] rounded font-plexSans'>
+      <div className='flex flex-col items-center gap-8 h-full container md:flex-row'>
+        <div className='w-full z-10 md:w-6/12 '>
+          <h2 className='text-violet text-[30px] leading-[36px] font-semibold pb-[32px] sm:leading-[48px] sm:text-[40px] '>
+            Vos restaurants préférés, livrés chez vous en un clic
+          </h2>
+          <form className='bg-white p-5 md:p-[32px] rounded font-plexSans'>
             <label htmlFor='adress'>Entrez votre adresse pour trouver les restaurants à proximité</label>
-            <div className='flex gap-3 mt-[10px]'>
-              <input className='px-3 w-full border rounded' type='text' id='adress' placeholder='Saisissez votre adresse' />
+            <div className='flex flex-col sm:flex-row gap-3 mt-[10px]'>
+              <input className='px-3 w-full h-[50px] border rounded' type='text' id='adress' placeholder='Saisissez votre adresse' />
               <Button>Chercher</Button>
             </div>
           </form>
         </div>
 
-        <div className='flex items-end justify-center w-6/12'>
+        <div className='w-full flex items-end justify-center md:w-6/12'>
           <Image src={HeaderIllustation} alt='header illustration' width='426' height='410' />
         </div>
       </div>
