@@ -29,7 +29,7 @@ export default function login() {
             </form>
           ) : (
             <button onClick={() => setClick(true)} className='bg-green  text-white font-semibold rounded py-[12px] px-[24px]'>
-              Continuer avec dune adresse e-mail
+              Continuer avec une adresse e-mail
             </button>
           )}
         </div>

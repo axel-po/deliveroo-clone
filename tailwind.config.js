@@ -12,6 +12,9 @@ module.exports = {
         black: "#2e3333",
         green: "#00ccbc",
       },
+      fontSize: {
+        // textClampLg: "clamp(23px, 4vw, 40px)",
+      },
     },
   },
   plugins: [],
