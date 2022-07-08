@@ -12,11 +12,11 @@ type Props = {
 
 export default function Nav({ page }: Props) {
   return (
-    <nav className={`${page?.page == "login" ? " py-[14px]  border-b" : "lg: w-full py-[14px]"}`}>
+    <nav className={`${page?.page == "login" || page?.page == "menu" ? " py-[14px]  border-b" : "lg: w-full py-[14px]"}`}>
       <div className='flex justify-between container'>
         <Link href='/'>
           <a>
-            {page?.page == "login" ? (
+            {page?.page == "login" || page?.page == "menu" ? (
               <Image src={LogoGreen} alt='logo deliveroo' width='112' height='32' />
             ) : (
               <Image src={Logo} alt='logo deliveroo' width='112' height='32' />
