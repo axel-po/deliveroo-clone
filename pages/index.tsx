@@ -1,10 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
+
 import Header from "../components/Header/Header";
-import DelivrooIllustration from "/public/assets/delivroo-illustration.svg";
-import ApplePlayStore from "/public/assets/icons/app-store.svg";
 import { Title } from "../components/Typography/Typography";
-import { Button } from "../components/Buttons/Buttons";
 import Footer from "../components/Footer/Footer";
 
 export default function Home() {
@@ -124,8 +121,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }

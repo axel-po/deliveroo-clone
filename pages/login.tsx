@@ -53,8 +53,6 @@ export default function login() {
           )}
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }
