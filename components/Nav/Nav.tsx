@@ -31,7 +31,7 @@ export default function Nav({ page }: Props) {
             </button>
           )}
           {page?.page !== "login" && (
-            <Link href='/login'>
+            <Link href='/auth/login'>
               <a className='hidden md:flex items-center gap-3 py-[8px] px-[16px] rounded border bg-white'>
                 <Image src={IconHome} width='18' height='18' alt='icon panier' />
                 <span>Inscription ou connexion</span>

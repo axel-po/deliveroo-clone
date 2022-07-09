@@ -1,10 +1,15 @@
-import Nav from "../components/Nav/Nav";
+/* eslint-disable react-hooks/rules-of-hooks */
+import Nav from "../../../components/Nav/Nav";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Inputs } from "../config/types";
+import { Inputs } from "../../../config/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useAuth } from "../../../hooks/useAuth";
+import { URL_REGISTER } from "../../../config/config";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
-export default function login() {
+export default function Register() {
   /* Yup */
   const schema = yup.object({
     firstName: yup.string().required("Ce champs est requis.").max(10, "10 caractères max"),
@@ -14,15 +19,25 @@ export default function login() {
   });
 
   /* React Hook Form */
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { register, handleSubmit, formState } = useForm<Inputs>({
-    mode: "onTouched",
+    mode: "onChange",
     resolver: yupResolver(schema),
   });
 
   const { isSubmitting, isValid, errors } = formState;
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  /* hooks */
+  const router = useRouter();
+  const { sendAuth } = useAuth();
+
+  const onSubmit: SubmitHandler<Inputs> = async (formData) => {
+    try {
+      await sendAuth(URL_REGISTER, formData);
+      router.push("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -39,6 +54,7 @@ export default function login() {
                   type='text'
                   id='firstName'
                   {...register("firstName")}
+                  defaultValue={"Axel"}
                 />
                 {errors.firstName && <span className=' text-red-600 text-xs'>{errors.firstName.message}</span>}
               </div>
@@ -49,6 +65,7 @@ export default function login() {
                   type='text'
                   id='name'
                   {...register("name")}
+                  defaultValue={"Po"}
                 />
                 {errors.name && <span className=' text-red-600 text-xs'>{errors.name.message}</span>}
               </div>
@@ -60,6 +77,7 @@ export default function login() {
                   id='email'
                   placeholder='par ex. elonmusk@aws.com'
                   {...register("email")}
+                  defaultValue={"axelpo@free.fr"}
                 />
                 {errors.email && <span className=' text-red-600 text-xs'>{errors.email.message}</span>}
               </div>
@@ -71,19 +89,26 @@ export default function login() {
                   id='password'
                   placeholder='par ex. 123456 (ou pas)'
                   {...register("password")}
+                  defaultValue={"123456"}
                 />
                 {errors.password && <span className=' text-red-600 text-xs'>{errors.password.message}</span>}
               </div>
 
               <button
-                disabled={!isValid}
+                disabled={!isValid || isSubmitting}
                 className={`${
-                  !isValid && "cursor-not-allowed bg-[#E2E5E5] text-[#b5b8b8]"
-                }   col-span-2 bg-green  text-white font-semibold rounded py-[12px] px-[24px]`}>
-                Créer un compte
+                  !isValid && "cursor-not-allowed bg-[#E2E5E5] text-[#b5b8b8] hover:bg-[#E2E5E5]"
+                }   col-span-2 bg-green  text-white font-semibold rounded py-[12px] px-[24px] hover:bg-[#29C2B3]`}>
+                {isSubmitting ? "Chargement..." : "Créer un compte"}
               </button>
             </div>
           </form>
+          <p className='text-sm pt-3'>
+            Vous avez déjà un compte ? &nbsp;
+            <Link href='/auth/login'>
+              <a className='text-green'>Connectez-vous</a>
+            </Link>
+          </p>
         </div>
       </section>
     </>
