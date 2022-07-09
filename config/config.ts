@@ -1,0 +1,3 @@
+export const API_URL = process.env.NEXT_PUBLIC_API_URL;
+export const URL_LOGIN = API_URL + "api/auth/login";
+export const URL_REGISTER = API_URL + "api/auth/signup";

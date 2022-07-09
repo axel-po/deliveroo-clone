@@ -1,7 +1,6 @@
 import Nav from "../components/Nav/Nav";
 import { TitlePageMenu } from "../components/Typography/Typography";
 import CardFood from "../components/CardFood/CardFood";
-import "swiper/css";
 
 export default function menus() {
   return (
