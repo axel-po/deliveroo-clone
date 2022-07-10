@@ -4,11 +4,12 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Inputs } from "../../../config/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useAuth } from "../../../hooks/useAuth";
-import { URL_REGISTER } from "../../../config/config";
+import { URL_LOGIN } from "../../../config/config";
 import { useRouter } from "next/router";
 import Link from "next/link";
-
+import { authenticate } from "../../../utils/api";
+import { useAuth } from "../../../context/authContext";
+import { isAuthticated } from "../../../utils/api";
 export default function Login() {
   /* Yup */
   const schema = yup.object({
@@ -17,7 +18,7 @@ export default function Login() {
   });
 
   /* React Hook Form */
-  const { register, handleSubmit, formState } = useForm<Inputs>({
+  const { register, handleSubmit, formState, setError } = useForm<Inputs>({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
@@ -26,14 +27,16 @@ export default function Login() {
 
   /* hooks */
   const router = useRouter();
-  const { sendAuth } = useAuth();
 
   const onSubmit: SubmitHandler<Inputs> = async (formData) => {
     try {
-      await sendAuth(URL_REGISTER, formData);
+      await authenticate(formData, URL_LOGIN);
       router.push("/");
     } catch (err) {
-      console.log(err);
+      setError("password", {
+        type: "manual",
+        message: "Mot de passe ou adresse email invalide.",
+      });
     }
   };
 
@@ -53,7 +56,7 @@ export default function Login() {
                   id='email'
                   placeholder='par ex. elonmusk@aws.com'
                   {...register("email")}
-                  defaultValue={"axelpo@free.fr"}
+                  defaultValue={"axelpo2@free.fr"}
                 />
                 {errors.email && <span className=' text-red-600 text-xs'>{errors.email.message}</span>}
               </div>
@@ -73,15 +76,17 @@ export default function Login() {
               <button
                 disabled={!isValid || isSubmitting}
                 className={`${
-                  !isValid && "cursor-not-allowed bg-[#E2E5E5] text-[#b5b8b8] hover:bg-[#E2E5E5]"
-                }   col-span-2 bg-green  text-white font-semibold rounded py-[12px] px-[24px] hover:bg-[#29C2B3]`}>
+                  !isValid || isSubmitting
+                    ? "col-span-2 font-semibold rounded py-[12px] px-[24px] cursor-not-allowed bg-[#E2E5E5] text-[#b5b8b8]"
+                    : "col-span-2 bg-green  text-white font-semibold rounded py-[12px] px-[24px] hover:bg-[#29C2B3]"
+                }`}>
                 {isSubmitting ? "Chargement..." : "Se connecter"}
               </button>
             </div>
           </form>
           <p className='text-sm pt-3'>
             Pas de compte ? &nbsp;
-            <Link href='/auth/login'>
+            <Link href='/auth/register'>
               <a className='text-green'>S&apos;inscrire</a>
             </Link>
           </p>
