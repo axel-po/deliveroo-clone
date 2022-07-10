@@ -4,3 +4,15 @@ export type Inputs = {
   email: string;
   password: string;
 };
+
+export type Login = {
+  email: string;
+  password: string;
+};
+
+export type Register = {
+  name: string;
+  firstName: string;
+  email: string;
+  password: string;
+};

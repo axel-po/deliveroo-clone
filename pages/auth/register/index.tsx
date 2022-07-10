@@ -4,7 +4,6 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Inputs } from "../../../config/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useAuth } from "../../../hooks/useAuth";
 import { URL_REGISTER } from "../../../config/config";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -28,11 +27,10 @@ export default function Register() {
 
   /* hooks */
   const router = useRouter();
-  const { sendAuth } = useAuth();
 
   const onSubmit: SubmitHandler<Inputs> = async (formData) => {
     try {
-      await sendAuth(URL_REGISTER, formData);
+      // await sendAuth(URL_REGISTER, formData);
       router.push("/");
     } catch (err) {
       console.log(err);
@@ -97,8 +95,10 @@ export default function Register() {
               <button
                 disabled={!isValid || isSubmitting}
                 className={`${
-                  !isValid && "cursor-not-allowed bg-[#E2E5E5] text-[#b5b8b8] hover:bg-[#E2E5E5]"
-                }   col-span-2 bg-green  text-white font-semibold rounded py-[12px] px-[24px] hover:bg-[#29C2B3]`}>
+                  !isValid
+                    ? "col-span-2 font-semibold rounded py-[12px] px-[24px] cursor-not-allowed bg-[#E2E5E5] text-[#b5b8b8]"
+                    : "col-span-2 bg-green  text-white font-semibold rounded py-[12px] px-[24px] hover:bg-[#29C2B3]"
+                }`}>
                 {isSubmitting ? "Chargement..." : "Créer un compte"}
               </button>
             </div>
