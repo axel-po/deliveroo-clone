@@ -3,5 +3,5 @@ type Props = {
 };
 
 export const Button = ({ children }: Props) => {
-  return <button className='bg-green  text-white font-semibold rounded py-[12px] px-[24px]'>{children}</button>;
+  return <a className='block text-center bg-green  text-white font-semibold rounded py-[12px] px-[24px] font-plexSans cursor-pointer'>{children}</a>;
 };

@@ -1,9 +1,8 @@
-import Nav from "../components/Nav/Nav";
-import { TitlePageMenu } from "../components/Typography/Typography";
-import CardFood from "../components/CardFood/CardFood";
-import "swiper/css";
+import Nav from "../../components/Nav/Nav";
+import { TitlePageMenu } from "../../components/Typography/Typography";
+import CardFood from "../../components/CardFood/CardFood";
 
-export default function menus() {
+export default function Menus() {
   return (
     <>
       <Nav page={{ page: "menu" }} />

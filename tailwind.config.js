@@ -11,6 +11,7 @@ module.exports = {
         violet: "#440063",
         black: "#2e3333",
         green: "#00ccbc",
+        overlayColor: "rgba(0,0,0,.5)",
       },
       fontSize: {
         // textClampLg: "clamp(23px, 4vw, 40px)",
