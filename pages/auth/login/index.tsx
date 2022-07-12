@@ -32,7 +32,11 @@ export default function Login() {
     try {
       await authenticate(formData, URL_LOGIN);
       router.push("/");
-    } catch (err) {
+    } catch (err: any) {
+      if (err.code === "ERR_NETWORK") {
+        alert("Erreur serveur, essayez plus tard");
+        return;
+      }
       setError("password", {
         type: "manual",
         message: "Mot de passe ou adresse email invalide.",
