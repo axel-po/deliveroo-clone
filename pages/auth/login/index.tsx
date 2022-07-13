@@ -10,6 +10,7 @@ import Link from "next/link";
 import { authenticate } from "../../../utils/api";
 import { useAuth } from "../../../context/authContext";
 import { isAuthticated } from "../../../utils/api";
+
 export default function Login() {
   /* Yup */
   const schema = yup.object({

@@ -1,8 +1,8 @@
 import Nav from "../../components/Nav/Nav";
 import { TitlePageMenu } from "../../components/Typography/Typography";
-import CardFood from "../../components/CardFood/CardFood";
+import CardRestaurants from "../../components/CardRestaurants/CardRestaurants";
 
-export default function Menus() {
+export default function Restaurants() {
   return (
     <>
       <Nav page={{ page: "menu" }} />
@@ -17,14 +17,14 @@ export default function Menus() {
           <div className='flex flex-wrap gap-3'></div>
 
           <TitlePageMenu>À la une</TitlePageMenu>
-          <div className='grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5'>
-            <CardFood />
-            <CardFood />
-            <CardFood />
-            <CardFood />
-            <CardFood />
-            <CardFood />
-            <CardFood />
+          <div className='grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
+            <CardRestaurants />
+            <CardRestaurants />
+            <CardRestaurants />
+            <CardRestaurants />
+            <CardRestaurants />
+            <CardRestaurants />
+            <CardRestaurants />
           </div>
         </main>
       </div>
