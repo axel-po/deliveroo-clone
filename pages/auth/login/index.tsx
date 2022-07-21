@@ -23,6 +23,7 @@ export default function Login() {
     mode: "onChange",
     resolver: yupResolver(schema),
   });
+  console.log(isAuthticated());
 
   const { isSubmitting, isValid, errors } = formState;
 

@@ -13,5 +13,22 @@ export const authenticate = (credentials: Login | Register, url: string = URL_LO
     .then((data) => {
       window.localStorage.setItem("authToken", data.token);
       window.localStorage.setItem("name", data.name);
+      window.localStorage.setItem("email", data.email);
     });
 };
+
+export function isAuthticated() {
+  let token;
+  if (typeof window !== "undefined") {
+    token = window.localStorage.getItem("authToken");
+  }
+
+  if (token) {
+    const { exp } = jwtDecode(token);
+    if (exp * 1000 > new Date().getTime()) {
+      return true;
+    }
+    return false;
+  }
+  return false;
+}

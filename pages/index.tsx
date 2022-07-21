@@ -11,7 +11,6 @@ export default function Home() {
       <Header />
       <section className='container py-[50px] '>
         <Title>À la carte connectée : </Title>
-        <h1 className="text-4xl"> {isAuth ? "OUI" : "NON"}</h1>
 
         <div className='grid gap-[30px] grid-cols-1 sm:grid-cols-2 md:grid-cols-12'>
           <article className='md:col-span-5'>

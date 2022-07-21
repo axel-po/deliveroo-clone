@@ -10,7 +10,7 @@ type AuthContextType = {
 const AuthContext = createContext<null | AuthContextType>(null);
 
 export function AuthContextProvider(props: any) {
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [isAuth, setIsAuth] = useState<boolean>(isAuthticated());
 
   return <AuthContext.Provider value={{ isAuth, setIsAuth }}>{props.children}</AuthContext.Provider>;
 }
