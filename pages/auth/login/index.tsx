@@ -10,6 +10,7 @@ import Link from "next/link";
 import { authenticate } from "../../../utils/api";
 import { useAuth } from "../../../context/authContext";
 import { isAuthticated } from "../../../utils/api";
+
 export default function Login() {
   /* Yup */
   const schema = yup.object({
@@ -22,6 +23,7 @@ export default function Login() {
     mode: "onChange",
     resolver: yupResolver(schema),
   });
+  console.log(isAuthticated());
 
   const { isSubmitting, isValid, errors } = formState;
 
@@ -32,7 +34,11 @@ export default function Login() {
     try {
       await authenticate(formData, URL_LOGIN);
       router.push("/");
-    } catch (err) {
+    } catch (err: any) {
+      if (err.code === "ERR_NETWORK") {
+        alert("Erreur serveur, essayez plus tard");
+        return;
+      }
       setError("password", {
         type: "manual",
         message: "Mot de passe ou adresse email invalide.",

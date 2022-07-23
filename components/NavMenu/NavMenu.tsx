@@ -3,6 +3,7 @@ import LogoGreen from "/public/assets/logo-deliveroo-green.svg";
 import IconCross from "/public/assets/icons/icon-cross-green.svg";
 import { Button } from "../Buttons/Buttons";
 import Link from "next/link";
+import { useAuth } from "../../context/authContext";
 
 type Props = {
   showMenu: boolean;
@@ -10,6 +11,8 @@ type Props = {
 };
 
 export default function NavMenu({ showMenu, setShowMenu }: Props) {
+  const { isAuth } = useAuth();
+
   return (
     <div className='bg-overlayColor fixed inset-0 z-50 cursor-default'>
       <div className='fixed right-0 bg-white h-screen w-[5px] min-w-[370px] '>
@@ -20,11 +23,15 @@ export default function NavMenu({ showMenu, setShowMenu }: Props) {
           </button>
         </div>
         <div className='pt-12 px-5'>
-          <Link href='/auth/login'>
-            <a className='block text-center bg-green  text-white font-semibold rounded py-[12px] px-[24px] font-plexSans cursor-pointer'>
-              Inscription ou connexion
-            </a>
-          </Link>
+          {isAuth ? (
+            <p>yoooo </p>
+          ) : (
+            <Link href='/auth/login'>
+              <a className='block text-center bg-green  text-white font-semibold rounded py-[12px] px-[24px] font-plexSans cursor-pointer'>
+                Inscription ou connexion
+              </a>
+            </Link>
+          )}
         </div>
       </div>
     </div>

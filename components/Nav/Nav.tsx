@@ -7,6 +7,7 @@ import IconMenu from "/public/assets/icons/icon-menu.svg";
 import Link from "next/link";
 import NavMenu from "../NavMenu/NavMenu";
 import { useState } from "react";
+import { useAuth } from "../../context/authContext";
 
 type Props = {
   page?: { page: Object };
@@ -14,6 +15,7 @@ type Props = {
 
 export default function Nav({ page }: Props) {
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const { isAuth } = useAuth();
 
   return (
     <nav className={`${page?.page == "login" || page?.page == "menu" ? " py-[14px]  border-b" : "lg: w-full py-[14px]"}`}>
@@ -42,7 +44,6 @@ export default function Nav({ page }: Props) {
               </a>
             </Link>
           )}
-
           <button onClick={() => setShowMenu(!showMenu)} className='flex items-center gap-3 py-[8px] px-[16px] rounded border bg-white'>
             <Image src={IconMenu} width='18' height='18' alt='icon panier' />
             <span>Menu</span>

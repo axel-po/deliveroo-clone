@@ -16,3 +16,9 @@ export type Register = {
   email: string;
   password: string;
 };
+
+export type foodCategories = {
+  imageUrl: string;
+  title: string;
+  _id: string;
+};
