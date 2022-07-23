@@ -1,8 +1,13 @@
 import Nav from "../../components/Nav/Nav";
 import { TitlePageMenu } from "../../components/Typography/Typography";
 import CardRestaurants from "../../components/CardRestaurants/CardRestaurants";
+import { URL_GET_CATEGORY } from "../../config/config";
+import CardCategoryFood from "../../components/CardCategoryFood/CardCategoryFood";
+import { Key } from "react";
 
-export default function Restaurants() {
+export default function Restaurants({ foodCategories }: any) {
+  console.log(foodCategories);
+
   return (
     <>
       <Nav page={{ page: "menu" }} />
@@ -14,7 +19,11 @@ export default function Restaurants() {
         <main className='px-[30px]'>
           <TitlePageMenu>Livraison dans le quartier Reims - Centre Ville</TitlePageMenu>
 
-          <div className='flex flex-wrap gap-3'></div>
+          <div className='flex flex-wrap gap-3'>
+            {foodCategories.map((foodCat: { _id: Key | null | undefined; title: string; imageUrl: string }) => (
+              <CardCategoryFood key={foodCat?._id} title={foodCat?.title} imageUrl={foodCat?.imageUrl} />
+            ))}
+          </div>
 
           <TitlePageMenu>À la une</TitlePageMenu>
           <div className='grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
@@ -30,4 +39,15 @@ export default function Restaurants() {
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const data = await fetch(URL_GET_CATEGORY);
+  const foodCategories = await data.json();
+
+  return {
+    props: {
+      foodCategories,
+    },
+  };
 }
