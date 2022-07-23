@@ -2,8 +2,20 @@ import Image from "next/image";
 import Nav from "../Nav/Nav";
 import { Button } from "../Buttons/Buttons";
 import HeaderIllustation from "/public/assets/header-illustration.svg";
+import { useCity } from "../../context/cityContext";
+import { useEffect, useRef } from "react";
 
 export default function Header() {
+  const { city, setCity, cityFormAlert, setCityFormAlert } = useCity();
+
+  const refInput = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (cityFormAlert == true) {
+      refInput?.current?.focus();
+    }
+  }, [cityFormAlert]);
+
   return (
     <header className="pb-[20px] min-h-[500px] bg-[#D0EB99] before:content-[''] before:absolute before:right-0 before:top-[-10%] before:bg-[#00ccbc] before:w-full before:h-[297px] before:origin-center before:-skew-y-3">
       <Nav />
@@ -15,7 +27,15 @@ export default function Header() {
           <form className='bg-white p-5 md:p-[32px] rounded font-plexSans z-0'>
             <label htmlFor='adress'>Entrez votre adresse pour trouver les restaurants à proximité</label>
             <div className='flex flex-col sm:flex-row gap-3 mt-[10px]'>
-              <input className='px-3 w-full h-[50px] border rounded' type='text' id='adress' placeholder='Saisissez votre adresse' />
+              <input
+                className='px-3 w-full h-[50px] border rounded outline-black'
+                type='text'
+                id='adress'
+                placeholder='Saisissez votre adresse'
+                onChange={(e) => setCity(e.target.value)}
+                value={city}
+                ref={refInput}
+              />
               <Button>Chercher</Button>
             </div>
           </form>

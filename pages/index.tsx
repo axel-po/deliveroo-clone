@@ -2,9 +2,26 @@
 import Header from "../components/Header/Header";
 import { Title } from "../components/Typography/Typography";
 import { useAuth } from "../context/authContext";
+import { useCity } from "../context/cityContext";
+import { FOOD_CATEGORIES } from "../utils/helpers";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Home() {
   const { isAuth } = useAuth();
+  const { city, setCityFormAlert } = useCity();
+  const router = useRouter();
+
+  const verifyIfCityIsNotEmpty = (category: string) => {
+    if (city === "") {
+      setCityFormAlert(true);
+
+      router.push("/");
+    } else {
+      router.push("/restaurants");
+      console.log(category);
+    }
+  };
 
   return (
     <>
@@ -13,7 +30,7 @@ export default function Home() {
         <Title>À la carte connectée : </Title>
 
         <div className='grid gap-[30px] grid-cols-1 sm:grid-cols-2 md:grid-cols-12'>
-          <article className='md:col-span-5'>
+          <article className='md:col-span-5' onClick={() => verifyIfCityIsNotEmpty(FOOD_CATEGORIES[0])}>
             <div className="flex justify-center items-center h-[150px] text-white text-4xl font-semibold cursor-pointer bg-cover bg-center bg-[url('https://f.roocdn.com/images/menu_tags/285/menu-tag-image.jpg?width=860&height=300&auto=webp&format=jpg&fit=crop&v=1653042905')]">
               <h3 className='text-center'>Repas d affaires</h3>
             </div>

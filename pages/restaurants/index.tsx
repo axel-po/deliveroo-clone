@@ -4,10 +4,11 @@ import CardRestaurants from "../../components/CardRestaurants/CardRestaurants";
 import { URL_GET_CATEGORY } from "../../config/config";
 import CardCategoryFood from "../../components/CardCategoryFood/CardCategoryFood";
 import { Key } from "react";
-
+import { useRouter } from "next/router";
 export default function Restaurants({ foodCategories }: any) {
-  console.log(foodCategories);
+  const path = useRouter();
 
+  console.log(path);
   return (
     <>
       <Nav page={{ page: "menu" }} />
