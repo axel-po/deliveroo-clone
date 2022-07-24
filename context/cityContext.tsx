@@ -1,6 +1,5 @@
 import { createContext, useContext, useSyncExternalStore } from "react";
 import { useState } from "react";
-import { isAuthticated } from "../utils/api";
 
 type CityContextType = {
   city: string;
