@@ -1,6 +1,5 @@
 import { createContext, useContext } from "react";
 import { useState } from "react";
-// import { isAuthticated } from "../utils/api";
 
 type AuthContextType = {
   isAuth: boolean;
