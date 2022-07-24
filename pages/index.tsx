@@ -15,11 +15,12 @@ export default function Home() {
   const verifyIfCityIsNotEmpty = (category: string) => {
     if (city === "") {
       setCityFormAlert(true);
-
       router.push("/");
     } else {
-      router.push("/restaurants");
-      console.log(category);
+      router.push({
+        pathname: `restaurants/${city}`,
+        query: { category: category },
+      });
     }
   };
 
@@ -30,7 +31,7 @@ export default function Home() {
         <Title>À la carte connectée : </Title>
 
         <div className='grid gap-[30px] grid-cols-1 sm:grid-cols-2 md:grid-cols-12'>
-          <article className='md:col-span-5' onClick={() => verifyIfCityIsNotEmpty(FOOD_CATEGORIES[0])}>
+          <article className='md:col-span-5'>
             <div className="flex justify-center items-center h-[150px] text-white text-4xl font-semibold cursor-pointer bg-cover bg-center bg-[url('https://f.roocdn.com/images/menu_tags/285/menu-tag-image.jpg?width=860&height=300&auto=webp&format=jpg&fit=crop&v=1653042905')]">
               <h3 className='text-center'>Repas d affaires</h3>
             </div>
@@ -40,7 +41,7 @@ export default function Home() {
             <button className='text-green'>Voir Repas affaires</button>
           </article>
 
-          <article className='md:col-start-6 md:col-end-13'>
+          <article className='md:col-start-6 md:col-end-13' onClick={() => verifyIfCityIsNotEmpty(FOOD_CATEGORIES[0])}>
             <div className="flex justify-center items-center h-[150px] text-white text-4xl font-semibold cursor-pointer bg-cover bg-center bg-[url('https://f.roocdn.com/images/menu_tags/288/menu-tag-image.jpg?width=1320&height=300&auto=webp&format=jpg&fit=crop&v=1648802301')]">
               <h3 className='text-center text-clamp-lg'>Plats réconfortants</h3>
             </div>

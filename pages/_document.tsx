@@ -7,7 +7,7 @@ export class MyDocument extends Document {
       <Html lang='fr'>
         <Head>
           <title>Clone de Deliveroo</title>
-          <link rel='shortcut icon' href="/public/favicon.ico" />
+          <link rel='shortcut icon' href='/public/favicon.ico' />
         </Head>
         <body>
           <Main />
