@@ -5,18 +5,18 @@ import { URL_GET_CATEGORY, URL_GET_RESTAURANTS } from "../../config/config";
 import CardCategoryFood from "../../components/CardCategoryFood/CardCategoryFood";
 import { Key } from "react";
 import { useRouter } from "next/router";
-import { capitalizeFirstLetter } from "../../utils/helpers";
 
 export default function Restaurants({ foodCategories, restaurants }: any) {
   const router = useRouter();
-  console.log(restaurants);
+  const { city } = router.query;
+  console.log(typeof city);
 
   return (
     <>
       <Nav page={{ page: "menu" }} />
       <div className='flex'>
         <aside className='w-[58vw] max-w-[340px] h-screen border-r  p-[60px] '>
-          <p className='font-extrabold'>Livraison à : {router.query.city}</p>
+          <p className='font-extrabold'>Livraison à : {city}</p>
         </aside>
 
         <main className='px-[30px]'>
@@ -24,7 +24,7 @@ export default function Restaurants({ foodCategories, restaurants }: any) {
 
           <div className='flex flex-wrap gap-3'>
             {foodCategories.map((foodCat: { _id: Key | null | undefined; title: string; imageUrl: string }) => (
-              <CardCategoryFood key={foodCat?._id} title={foodCat?.title} imageUrl={foodCat?.imageUrl} />
+              <CardCategoryFood key={foodCat?._id} title={foodCat?.title} imageUrl={foodCat?.imageUrl} city={city} />
             ))}
           </div>
 
@@ -40,9 +40,9 @@ export default function Restaurants({ foodCategories, restaurants }: any) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: { query: { category: string } }) {
   const footCatData = await fetch(URL_GET_CATEGORY);
-  const restaurantsData = await fetch(URL_GET_RESTAURANTS);
+  const restaurantsData = await fetch(URL_GET_RESTAURANTS + context.query.category);
 
   const foodCategories = await footCatData.json();
   const restaurants = await restaurantsData.json();
