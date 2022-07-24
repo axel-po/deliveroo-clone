@@ -1,21 +1,19 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Nav from "../../components/Nav/Nav";
 import { Title } from "../../components/Typography/Typography";
 import Image from "next/image";
 import IconStar from "/public/assets/icons/icon-star.svg";
+import { URL_GET_ONE_RESTAURANT } from "../../config/config";
 
-export default function Foods() {
+export default function Menu({ restaurantMenu }: any) {
   return (
     <>
       <Nav page={{ page: "menu" }} />
       <div className='flex gap-[20px] py-[30px] container'>
-        <img
-          className='w-[390px] h-[220px]'
-          src='https://rs-menus-api.roocdn.com/images/79b8815c-d00c-4238-9c73-7cb971b3cdf9/image.jpeg?width=778&height=438&auto=webp&format=jpg&fit=crop'
-          alt=''
-        />
+        <img className='w-[390px] h-[220px]' src={restaurantMenu?.imageUrl} alt='' />
         <div>
-          <h3 className='text-4xl font-bold'>Maison Dumont</h3>
+          <h3 className='text-4xl font-bold'>{restaurantMenu?.title}</h3>
           <p className='text pt-2'>10 - 20 min</p>
           <div className='flex '>
             <Image src={IconStar} width='15' height='15' alt='icon étoiles' />
@@ -49,4 +47,15 @@ export default function Foods() {
       </main>
     </>
   );
+}
+
+export async function getServerSideProps(context: { query: { id: string } }) {
+  const restaurantMenuData = await fetch(URL_GET_ONE_RESTAURANT + context.query.id);
+  const restaurantMenu = await restaurantMenuData.json();
+
+  return {
+    props: {
+      restaurantMenu,
+    },
+  };
 }

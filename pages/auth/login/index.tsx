@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { authenticate } from "../../../utils/api";
 import { useAuth } from "../../../context/authContext";
-import { isAuthticated } from "../../../utils/api";
 
 export default function Login() {
   /* Yup */
@@ -23,7 +22,6 @@ export default function Login() {
     mode: "onChange",
     resolver: yupResolver(schema),
   });
-  console.log(isAuthticated());
 
   const { isSubmitting, isValid, errors } = formState;
 
