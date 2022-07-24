@@ -22,16 +22,16 @@ export default function Restaurants({ foodCategories, restaurants }: any) {
           <TitlePageMenu>Livraison dans </TitlePageMenu>
 
           <div className='flex flex-wrap gap-3'>
-            {foodCategories.map((foodCat: { _id: Key | null | undefined; title: string; imageUrl: string }) => (
+            {/* {foodCategories.map((foodCat: { _id: Key | null | undefined; title: string; imageUrl: string }) => (
               <CardCategoryFood key={foodCat?._id} title={foodCat?.title} imageUrl={foodCat?.imageUrl} city={city} />
-            ))}
+            ))} */}
           </div>
 
           <TitlePageMenu>À la une</TitlePageMenu>
           <div className='grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
-            {restaurants.map((restaurant: { _id: any; title: string; imageUrl: string }) => (
+            {/* {restaurants.map((restaurant: { _id: any; title: string; imageUrl: string }) => (
               <CardRestaurants key={restaurant?._id} id={restaurant?._id} title={restaurant?.title} imageUrl={restaurant?.imageUrl} />
-            ))}
+            ))} */}
           </div>
         </main>
       </div>
@@ -39,17 +39,17 @@ export default function Restaurants({ foodCategories, restaurants }: any) {
   );
 }
 
-export async function getServerSideProps(context: { query: { category: string } }) {
-  const footCatData = await fetch(URL_GET_CATEGORY);
-  const restaurantsData = await fetch(URL_GET_RESTAURANTS + context.query.category);
+// export async function getServerSideProps(context: { query: { category: string } }) {
+//   const footCatData = await fetch(URL_GET_CATEGORY);
+//   const restaurantsData = await fetch(URL_GET_RESTAURANTS + context.query.category);
 
-  const foodCategories = await footCatData.json();
-  const restaurants = await restaurantsData.json();
+//   const foodCategories = await footCatData.json();
+//   const restaurants = await restaurantsData.json();
 
-  return {
-    props: {
-      foodCategories,
-      restaurants,
-    },
-  };
-}
+//   return {
+//     props: {
+//       foodCategories,
+//       restaurants,
+//     },
+//   };
+// }
