@@ -1,7 +1,6 @@
 import axios from "axios";
 import { URL_LOGIN } from "../config/config";
 import { Login, Register } from "../config/types";
-import jwtDecode from "jwt-decode";
 
 const sleep = (t: number) => new Promise((resolve) => setTimeout(resolve, t));
 
@@ -16,19 +15,3 @@ export const authenticate = (credentials: Login | Register, url: string = URL_LO
       window.localStorage.setItem("email", data.email);
     });
 };
-
-// export function isAuthticated() {
-//   let token;
-//   if (typeof window !== "undefined") {
-//     token = window.localStorage.getItem("authToken");
-//   }
-
-//   if (token) {
-//     const { exp } = jwtDecode(token);
-//     if (exp * 1000 > new Date().getTime()) {
-//       return true;
-//     }
-//     return false;
-//   }
-//   return false;
-// }
