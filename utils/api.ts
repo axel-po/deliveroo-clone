@@ -17,18 +17,18 @@ export const authenticate = (credentials: Login | Register, url: string = URL_LO
     });
 };
 
-export function isAuthticated() {
-  let token;
-  if (typeof window !== "undefined") {
-    token = window.localStorage.getItem("authToken");
-  }
+// export function isAuthticated() {
+//   let token;
+//   if (typeof window !== "undefined") {
+//     token = window.localStorage.getItem("authToken");
+//   }
 
-  if (token) {
-    const { exp } = jwtDecode(token);
-    if (exp * 1000 > new Date().getTime()) {
-      return true;
-    }
-    return false;
-  }
-  return false;
-}
+//   if (token) {
+//     const { exp } = jwtDecode(token);
+//     if (exp * 1000 > new Date().getTime()) {
+//       return true;
+//     }
+//     return false;
+//   }
+//   return false;
+// }

@@ -1,5 +1,5 @@
 type Props = {
-  children: string;
+  children: string | JSX.Element;
 };
 
 export const Title = ({ children }: Props) => {

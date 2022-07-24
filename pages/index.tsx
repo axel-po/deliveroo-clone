@@ -2,9 +2,27 @@
 import Header from "../components/Header/Header";
 import { Title } from "../components/Typography/Typography";
 import { useAuth } from "../context/authContext";
+import { useCity } from "../context/cityContext";
+import { FOOD_CATEGORIES } from "../utils/helpers";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Home() {
   const { isAuth } = useAuth();
+  const { city, setCityFormAlert } = useCity();
+  const router = useRouter();
+
+  const verifyIfCityIsNotEmpty = (category: string) => {
+    if (city === "") {
+      setCityFormAlert(true);
+      router.push("/");
+    } else {
+      router.push({
+        pathname: `restaurants/${city}`,
+        query: { category: category },
+      });
+    }
+  };
 
   return (
     <>
@@ -23,7 +41,7 @@ export default function Home() {
             <button className='text-green'>Voir Repas affaires</button>
           </article>
 
-          <article className='md:col-start-6 md:col-end-13'>
+          <article className='md:col-start-6 md:col-end-13' onClick={() => verifyIfCityIsNotEmpty(FOOD_CATEGORIES[0])}>
             <div className="flex justify-center items-center h-[150px] text-white text-4xl font-semibold cursor-pointer bg-cover bg-center bg-[url('https://f.roocdn.com/images/menu_tags/288/menu-tag-image.jpg?width=1320&height=300&auto=webp&format=jpg&fit=crop&v=1648802301')]">
               <h3 className='text-center text-clamp-lg'>Plats réconfortants</h3>
             </div>
