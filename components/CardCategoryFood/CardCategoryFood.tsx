@@ -3,7 +3,7 @@ import Link from "next/link";
 type Props = {
   title: string;
   imageUrl: string;
-  city: string;
+  city: any;
 };
 
 export default function CardCategoryFood({ title, imageUrl, city }: Props) {

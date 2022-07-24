@@ -29,7 +29,7 @@ export default function Restaurants({ foodCategories, restaurants }: any) {
 
           <TitlePageMenu>À la une</TitlePageMenu>
           <div className='grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
-            {restaurants.map((restaurant: { _id: Key | null | undefined; title: string; imageUrl: string }) => (
+            {restaurants.map((restaurant: { _id: any; title: string; imageUrl: string }) => (
               <CardRestaurants key={restaurant?._id} id={restaurant?._id} title={restaurant?.title} imageUrl={restaurant?.imageUrl} />
             ))}
           </div>
