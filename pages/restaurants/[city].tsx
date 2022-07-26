@@ -1,7 +1,7 @@
 import Nav from "../../components/Nav/Nav";
 import { TitlePageMenu } from "../../components/Typography/Typography";
 import CardRestaurants from "../../components/CardRestaurants/CardRestaurants";
-import { URL_GET_CATEGORY, URL_GET_RESTAURANTS } from "../../config/config";
+import { URL_CATEGORY, URL_RESTAURANTS } from "../../config/config";
 import CardCategoryFood from "../../components/CardCategoryFood/CardCategoryFood";
 import { Key } from "react";
 import { useRouter } from "next/router";
@@ -40,8 +40,8 @@ export default function Restaurants({ foodCategories, restaurants }: any) {
 }
 
 export async function getServerSideProps(context: { query: { category: string } }) {
-  const footCatData = await fetch(URL_GET_CATEGORY);
-  const restaurantsData = await fetch(URL_GET_RESTAURANTS + context.query.category);
+  const footCatData = await fetch(URL_CATEGORY);
+  const restaurantsData = await fetch(URL_RESTAURANTS + context.query.category);
 
   const foodCategories = await footCatData.json();
   const restaurants = await restaurantsData.json();

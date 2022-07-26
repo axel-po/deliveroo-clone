@@ -31,6 +31,14 @@ export default function Nav({ page }: Props) {
         </Link>
         <div className='flex gap-3 z-10' role='button'>
           {page?.page !== "login" && (
+            <Link href='/create'>
+              <a className='hidden md:flex items-center gap-3 py-[8px] px-[16px] rounded border bg-white'>
+                {/* <Image src={IconCart} width='18' height='18' alt='icon panier' /> */}
+                <span>Devenir partenaire</span>
+              </a>
+            </Link>
+          )}
+          {page?.page !== "login" && (
             <button className='hidden md:flex items-center gap-3 py-[8px] px-[16px] rounded border bg-white'>
               <Image src={IconCart} width='18' height='18' alt='icon panier' />
               <span>0,00 €</span>

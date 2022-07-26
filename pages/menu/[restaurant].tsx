@@ -4,7 +4,7 @@ import Nav from "../../components/Nav/Nav";
 import { Title } from "../../components/Typography/Typography";
 import Image from "next/image";
 import IconStar from "/public/assets/icons/icon-star.svg";
-import { URL_GET_ONE_RESTAURANT } from "../../config/config";
+import { URL_ONE_RESTAURANT } from "../../config/config";
 
 export default function Menu({ restaurantMenu }: any) {
   return (
@@ -50,7 +50,7 @@ export default function Menu({ restaurantMenu }: any) {
 }
 
 export async function getServerSideProps(context: { query: { id: string } }) {
-  const restaurantMenuData = await fetch(URL_GET_ONE_RESTAURANT + context.query.id);
+  const restaurantMenuData = await fetch(URL_ONE_RESTAURANT + context.query.id);
   const restaurantMenu = await restaurantMenuData.json();
 
   return {
