@@ -22,10 +22,6 @@ export default function Home() {
       });
       setErrorCity(true);
     } else {
-      // history.push({
-      //   pathname: `restaurants/${city}`,
-      //   state: { category },
-
       navigate(`/restaurants/${city}`, { state: category });
     }
   };

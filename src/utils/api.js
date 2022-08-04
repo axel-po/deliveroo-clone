@@ -4,14 +4,17 @@ import jwtDecode from "jwt-decode";
 
 const sleep = (t) => new Promise((resolve) => setTimeout(resolve, t));
 
+/* Api */
+export const clientApi = async (endpoint) => {
+  return axios.get(endpoint);
+};
+
 /* Authentification */
 export const authenticate = (credentials, url = URL_LOGIN) => {
   return axios
     .post(url, credentials)
     .then((res) => res.data)
     .then((data) => {
-      console.log(data);
-
       window.localStorage.setItem("authToken", data.token);
       window.localStorage.setItem("name", data.name);
       window.localStorage.setItem("email", data.email);
