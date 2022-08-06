@@ -6,6 +6,9 @@ import { URL_ONE_RESTAURANT, URL_MENUS } from "../../config/config";
 import { useFetchData } from "../../hooks/useFetchData";
 import { clientApi } from "../../utils/api";
 import { useLocation } from "react-router-dom";
+import CardFood from "../../components/CardFood/CardFood";
+import IconCart from "../../assets/icons/icon-cart-gray.svg";
+import { Button } from "../../components/Buttons/Buttons";
 
 export default function Menus({ restaurantMenu }) {
   /* Hooks */
@@ -17,8 +20,8 @@ export default function Menus({ restaurantMenu }) {
   useEffect(() => {
     executeRestaurant(clientApi(URL_ONE_RESTAURANT + idRestaurant));
     executeMenus(clientApi(URL_MENUS + idRestaurant));
-  }, [executeRestaurant, idRestaurant]);
-  console.log(menus);
+  }, [executeMenus, executeRestaurant, idRestaurant]);
+
   return (
     <>
       <Nav page={{ page: "menu" }} />
@@ -40,27 +43,44 @@ export default function Menus({ restaurantMenu }) {
       </div>
       <nav className='flex  py-[20px] border-t shadow'>
         <div className='container'>
-          <a className='text-green uppercase mr-7 ' href='#'>
+          <a className='text-green uppercase mr-7 ' href='/'>
             Entrées
           </a>
-          <a className='text-green uppercase mr-7' href='#'>
+          <a className='text-green uppercase mr-7' href='/'>
             Accompagnements
           </a>
-          <a className='text-green uppercase mr-7' href='#'>
+          <a className='text-green uppercase mr-7' href='/'>
             Sauces
           </a>
-          <a className='text-green uppercase mr-7' href='#'>
+          <a className='text-green uppercase mr-7' href='/'>
             Dessert
           </a>
-          <a className='text-green uppercase mr-7' href='#'>
+          <a className='text-green uppercase mr-7' href='/'>
             Boissons
           </a>
         </div>
       </nav>
-      <main className='container'>
-        <div className='py-[40px]'>
+      <main className='grid grid-cols-[1fr_420px] gap-[25px] container--small py-[40px] '>
+        <div>
           <Title>Menus</Title>
+          <div className='grid grid-cols-menus gap-4'>
+            <CardFood menu={menus?.data} />
+            <CardFood menu={menus?.data} />
+            <CardFood menu={menus?.data} />
+            <CardFood menu={menus?.data} />
+            <CardFood menu={menus?.data} />
+            <CardFood menu={menus?.data} />
+            <CardFood menu={menus?.data} />
+            <CardFood menu={menus?.data} />
+          </div>
         </div>
+        <aside className='sticky top-[30px] flex flex-col justify-between border font-plexSans p-[15px] h-[228px]'>
+          <div className='flex items-center flex-col py-5'>
+            <img className='w-[55px] mb-[10px]' src={IconCart} alt='icon-cart' />
+            <p className='text-[#abadad]'>Votre panier est vide</p>
+          </div>
+          <Button>Finaliser la commande</Button>
+        </aside>
       </main>
     </>
   );

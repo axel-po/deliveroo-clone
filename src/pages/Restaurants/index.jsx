@@ -21,7 +21,7 @@ export default function Restaurants() {
     executeFoodCat(clientApi(URL_CATEGORY));
     executeRestaurants(clientApi(URL_RESTAURANTS + foodCategory));
   }, [foodCategory, executeFoodCat, executeRestaurants]);
-
+  console.log(restaurants);
   return (
     <>
       <Nav page={{ page: "menu" }} />
