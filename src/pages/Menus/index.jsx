@@ -22,6 +22,7 @@ export default function Menus({ restaurantMenu }) {
     executeMenus(clientApi(URL_MENUS + idRestaurant));
   }, [executeMenus, executeRestaurant, idRestaurant]);
 
+  console.log(menus?.data);
   return (
     <>
       <Nav page={{ page: "menu" }} />
@@ -64,14 +65,9 @@ export default function Menus({ restaurantMenu }) {
         <div>
           <Title>Menus</Title>
           <div className='grid grid-cols-menus gap-4'>
-            <CardFood menu={menus?.data} />
-            <CardFood menu={menus?.data} />
-            <CardFood menu={menus?.data} />
-            <CardFood menu={menus?.data} />
-            <CardFood menu={menus?.data} />
-            <CardFood menu={menus?.data} />
-            <CardFood menu={menus?.data} />
-            <CardFood menu={menus?.data} />
+            {menus?.data.map((menu) => (
+              <CardFood menu={menu} />
+            ))}
           </div>
         </div>
         <aside className='sticky top-[30px] flex flex-col justify-between border font-plexSans p-[15px] h-[228px]'>
