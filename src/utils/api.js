@@ -36,3 +36,9 @@ export function isAuthticated() {
   }
   return false;
 }
+
+export function logout() {
+  window.localStorage.removeItem("authToken");
+  window.localStorage.removeItem("name");
+  window.localStorage.removeItem("email");
+}
