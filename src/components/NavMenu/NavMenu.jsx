@@ -1,29 +1,54 @@
 import LogoGreen from "../../assets/logo-deliveroo-green.svg";
 import IconCross from "../../assets/icons/icon-cross-green.svg";
-import { Link } from "react-router-dom";
+import IconAcount from "../../assets/icons/icon-account.svg";
+import IconLogout from "../../assets/icons/icon-logout.svg";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+import { logout } from "../../utils/api";
 
 export default function NavMenu({ showMenu, setShowMenu }) {
-  const { isAuth } = useAuth();
+  const { isAuth, setIsAuth } = useAuth();
+  const navigate = useNavigate();
   const email = window.localStorage.getItem("email");
 
+  const closeMenu = (e) => {
+    if (e.target.classList.contains("overlay")) {
+      setShowMenu(false);
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setIsAuth(false);
+    setShowMenu(false);
+    navigate("/");
+  };
+
   return (
-    <div className='bg-overlayColor fixed inset-0 z-50 cursor-default'>
+    <div onClick={closeMenu} className='overlay bg-overlayColor fixed inset-0 z-50 cursor-default'>
       <div className='fixed right-0 bg-white h-screen w-[5px] min-w-[370px] '>
         <div className='flex justify-between items-center h-[75px] px-5 border'>
-          <img src={LogoGreen} alt='logo deliveroo' />
-          {/* width='112' height='32' */}
+          <img className='w-[112px] h-[32px]' src={LogoGreen} alt='logo deliveroo' />
+
           <button onClick={() => setShowMenu(!showMenu)} className='flex items-center'>
-            <img src={IconCross} alt='icon cross' />
-            {/* width='25' height='25' */}
+            <img className='w-[25px] h-[25px]' src={IconCross} alt='icon cross' />
           </button>
         </div>
         <div className='pt-12 px-5'>
           {isAuth ? (
             <>
-              <p>Votre comtpe : </p>
-              <span className='block'>{email}</span>
-              <button className='text-red-500'>Déconnexion</button>
+              <div className='flex items-center gap-3'>
+                <img className='w-[30px] h-[30px]' src={IconAcount} alt='icon profile' />
+                <div>
+                  <p>Votre comtpe : </p>
+                  <span className='text-sm text-gray-600'>{email}</span>
+                </div>
+              </div>
+
+              <button onClick={handleLogout} className='flex items-center gap-3 mt-12 text-red-500'>
+                <img className='w-[30px] h-[30px]' src={IconLogout} alt='icon logout' />
+                <span>Déconnexion</span>
+              </button>
             </>
           ) : (
             <Link

@@ -15,7 +15,7 @@ export default function Nav({ page }) {
   return (
     <nav className={`${page?.page === "login" || page?.page === "menu" ? " py-[14px]  border-b" : "lg: w-full py-[14px]"}`}>
       <div className='flex justify-between container'>
-        <Link to='/'>
+        <Link to='/' className="z-[10]">
           {page?.page === "login" || page?.page === "menu" ? (
             <img src={LogoGreen} alt='logo deliveroo' className='w-[112px] h-[32px]' />
           ) : (

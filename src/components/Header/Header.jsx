@@ -18,10 +18,6 @@ const Header = ({ cityData, errorCity, setErrorCity }) => {
     e.preventDefault();
 
     if (city) {
-      // router.push({
-      //   pathname: `restaurants/${city}`,
-      //   query: { category: "Burgers" },
-      // });
       navigate(`/restaurants/${city}`, { state: "Burgers" });
     } else {
       alert("Choisissez une ville ");
@@ -37,7 +33,7 @@ const Header = ({ cityData, errorCity, setErrorCity }) => {
             Vos restaurants préférés, livrés chez vous en un clic
           </h2>
           <form
-            className={`bg-white  p-5 md:p-[32px] rounded font-plexSans z-20 shadow-overlay ${errorCity && "shadow-full"}`}
+            className={`bg-white  p-5 md:p-[32px] rounded font-plexSans z-[20] shadow-overlay ${errorCity && "shadow-full"}`}
             onSubmit={handleSubmit}>
             <label htmlFor='adress'>Entrez votre ville pour trouver les restaurants à proximité</label>
             <div className='flex flex-col sm:flex-row gap-3 mt-[10px]'>
@@ -58,8 +54,7 @@ const Header = ({ cityData, errorCity, setErrorCity }) => {
         </div>
 
         <div className='w-full flex items-end justify-center md:w-6/12'>
-          <img src={HeaderIllustation} alt='header illustration' className='w-[426px] h-[410px]' />
-          {/* width='426' height='410' */}
+          <img src={HeaderIllustation} alt='header illustration' className='z-[2] w-[426px] h-[410px]' />
         </div>
       </div>
     </header>
