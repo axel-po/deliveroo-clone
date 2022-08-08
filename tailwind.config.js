@@ -19,6 +19,9 @@ module.exports = {
       boxShadow: {
         full: "0 0 10px 9999999px rgb(0, 0, 0, 0.5)",
       },
+      gridTemplateColumns: {
+        menus: "repeat(auto-fill, minmax(300px, 1fr))",
+      },
     },
   },
   plugins: [],
