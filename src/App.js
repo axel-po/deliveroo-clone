@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import AppProviders from "./AppProviders";
-// import Register from "./pages/auth/Register";
+import Register from "./pages/auth/Register.js";
 import Login from "./pages/auth/Login";
 import Home from "./pages/Home";
 import Menus from "./pages/Menus";
@@ -12,7 +12,7 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/auth/login' element={<Login />}></Route>
-        {/* <Route path='/auth/register' element={<Register />}></Route> */}
+        <Route path='/auth/register' element={<Register />}></Route>
         <Route path='/restaurants/:city' element={<Restaurants />}></Route>
         <Route path='/menus/:restaurant' element={<Menus />}></Route>
       </Routes>
