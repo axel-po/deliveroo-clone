@@ -2,18 +2,17 @@ import * as yup from "yup";
 import Nav from "../../../components/Nav/Nav";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { URL_REGISTER } from "../../../config/config";
+import { URL_LOGIN } from "../../../config/config";
+import { useLocation } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { authenticate } from "../../../utils/api";
 import { useAuth } from "../../../context/authContext";
 
-export default function Register() {
+export default function Login() {
   /* Yup */
   const schema = yup.object({
-    firstName: yup.string().required("Ce champs est requis.").max(10, "10 caractères max"),
-    name: yup.string().required("Ce champs est requis.").max(10, "10 caractères max"),
     email: yup.string().email("Veuillez entrer un email valide").required("Ce champs est requis."),
-    password: yup.string().required("Ce champs est requis.").min(6, "Le mot de passe doit contenir 6 caracères minimun"),
+    password: yup.string().required("Ce champs est requis."),
   });
 
   /* React Hook Form */
@@ -30,19 +29,18 @@ export default function Register() {
 
   const onSubmit = async (formData) => {
     try {
-      await authenticate(formData, URL_REGISTER);
+      await authenticate(formData, URL_LOGIN);
       navigate("/");
       setIsAuth(true);
     } catch (err) {
-      if (err.request.response.includes("email")) {
-        setError("email", {
-          message: "Email déja utilisée",
-        });
-      }
       if (err.code === "ERR_NETWORK") {
         alert("Erreur serveur, essayez plus tard");
         return;
       }
+      setError("password", {
+        type: "manual",
+        message: "Mot de passe ou adresse email invalide.",
+      });
     }
   };
 
@@ -50,32 +48,10 @@ export default function Register() {
     <>
       <Nav page={{ page: "login" }} />
       <section className='container font-plexSans h-full'>
-        <div className='flex justify-enter flex-col max-w-[500px] mx-auto py-[69px]'>
-          <h2 className='font-bold text-2xl mb-6'>Créez votre compte</h2>
+        <div className='flex justify-enter flex-col max-w-[500px] mx-auto py-[120px]'>
+          <h2 className='font-bold text-2xl mb-6'>Connexion</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='grid auto-rows-auto grid-cols-2 row-gap-[20px] gap-[30px]'>
-              <div>
-                <label htmlFor='firstName'>Prénom</label>
-                <input
-                  className={`px-3 w-full border rounded h-[45px]  outline-black ${errors.firstName && "border-red-600 border-2"} `}
-                  type='text'
-                  id='firstName'
-                  {...register("firstName")}
-                  defaultValue={"Axel"}
-                />
-                {errors.firstName && <span className=' text-red-600 text-xs'>{errors.firstName.message}</span>}
-              </div>
-              <div>
-                <label htmlFor='name'>Nom</label>
-                <input
-                  className={`px-3 w-full border rounded h-[45px]  outline-black ${errors.name && "border-red-600 border-2"}`}
-                  type='text'
-                  id='name'
-                  {...register("name")}
-                  defaultValue={"Po"}
-                />
-                {errors.name && <span className=' text-red-600 text-xs'>{errors.name.message}</span>}
-              </div>
               <div className='col-span-2'>
                 <label htmlFor='email'>Adresse email</label>
                 <input
@@ -84,7 +60,7 @@ export default function Register() {
                   id='email'
                   placeholder='par ex. elonmusk@aws.com'
                   {...register("email")}
-                  defaultValue={"axelpo@free.fr"}
+                  defaultValue={"axelpo2@free.fr"}
                 />
                 {errors.email && <span className=' text-red-600 text-xs'>{errors.email.message}</span>}
               </div>
@@ -104,18 +80,18 @@ export default function Register() {
               <button
                 disabled={!isValid || isSubmitting}
                 className={`${
-                  !isValid
+                  !isValid || isSubmitting
                     ? "col-span-2 font-semibold rounded py-[12px] px-[24px] cursor-not-allowed bg-[#E2E5E5] text-[#b5b8b8]"
                     : "col-span-2 bg-green  text-white font-semibold rounded py-[12px] px-[24px] hover:bg-[#29C2B3]"
                 }`}>
-                {isSubmitting ? "Chargement..." : "Créer un compte"}
+                {isSubmitting ? "Chargement..." : "Se connecter"}
               </button>
             </div>
           </form>
           <p className='text-sm pt-3'>
-            Vous avez déjà un compte ? &nbsp;
-            <Link to='/auth/login' className='text-green'>
-              Connectez-vous
+            Pas de compte ? &nbsp;
+            <Link to='/auth/register' className='text-green'>
+              S&apos;inscrire
             </Link>
           </p>
         </div>
