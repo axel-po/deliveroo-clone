@@ -3,7 +3,6 @@ import Nav from "../../../components/Nav/Nav";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { URL_LOGIN } from "../../../config/config";
-import { useLocation } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { authenticate } from "../../../utils/api";
 import { useAuth } from "../../../context/authContext";
