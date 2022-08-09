@@ -1,6 +1,5 @@
 import React from "react";
 import IconStar from "../../assets/icons/icon-star.svg";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function CardRestaurants({ id, title, imageUrl }) {
@@ -18,7 +17,7 @@ export default function CardRestaurants({ id, title, imageUrl }) {
   };
   return (
     <button onClick={goToRestaurant} className='border rounded shadow cursor-pointer'>
-      <img src={imageUrl} alt='restaurant' />
+      <img src={imageUrl} alt='restaurant' className='w-full' />
       <div className='p-3'>
         <h6 className='text-left text-[16px] mb-2'>{title}</h6>
         <div className='flex items-center'>

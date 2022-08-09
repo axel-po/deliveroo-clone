@@ -50,10 +50,10 @@ export default function Register() {
     <>
       <Nav page={{ page: "login" }} />
       <section className='container font-plexSans h-full'>
-        <div className='flex justify-enter flex-col max-w-[500px] mx-auto py-[69px]'>
+        <div className='flex justify-enter flex-col max-w-[500px] mx-auto py-[15vw] md:py-[69px]'>
           <h2 className='font-bold text-2xl mb-6'>Créez votre compte</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='grid auto-rows-auto grid-cols-2 row-gap-[20px] gap-[30px]'>
+            <div className='grid auto-rows-auto grid-cols-2 row-gap-[20px] gap-[10px] sm:gap-[30px]'>
               <div>
                 <label htmlFor='firstName'>Prénom</label>
                 <input
@@ -61,7 +61,6 @@ export default function Register() {
                   type='text'
                   id='firstName'
                   {...register("firstName")}
-                  defaultValue={"Axel"}
                 />
                 {errors.firstName && <span className=' text-red-600 text-xs'>{errors.firstName.message}</span>}
               </div>
@@ -72,7 +71,6 @@ export default function Register() {
                   type='text'
                   id='name'
                   {...register("name")}
-                  defaultValue={"Po"}
                 />
                 {errors.name && <span className=' text-red-600 text-xs'>{errors.name.message}</span>}
               </div>
@@ -84,7 +82,6 @@ export default function Register() {
                   id='email'
                   placeholder='par ex. elonmusk@aws.com'
                   {...register("email")}
-                  defaultValue={"axelpo@free.fr"}
                 />
                 {errors.email && <span className=' text-red-600 text-xs'>{errors.email.message}</span>}
               </div>
@@ -96,11 +93,9 @@ export default function Register() {
                   id='password'
                   placeholder='par ex. 123456 (ou pas)'
                   {...register("password")}
-                  defaultValue={"123456"}
                 />
                 {errors.password && <span className=' text-red-600 text-xs'>{errors.password.message}</span>}
               </div>
-
               <button
                 disabled={!isValid || isSubmitting}
                 className={`${

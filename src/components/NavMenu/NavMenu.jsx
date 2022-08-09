@@ -26,10 +26,9 @@ export default function NavMenu({ showMenu, setShowMenu }) {
 
   return (
     <div onClick={closeMenu} className='overlay bg-overlayColor fixed inset-0 z-50 cursor-default'>
-      <div className='fixed right-0 bg-white h-screen w-[5px] min-w-[370px] '>
+      <div className='fixed right-0 bg-white h-screen w-full sm:max-w-[370px]'>
         <div className='flex justify-between items-center h-[75px] px-5 border'>
           <img className='w-[112px] h-[32px]' src={LogoGreen} alt='logo deliveroo' />
-
           <button onClick={() => setShowMenu(!showMenu)} className='flex items-center'>
             <img className='w-[25px] h-[25px]' src={IconCross} alt='icon cross' />
           </button>
