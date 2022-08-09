@@ -25,7 +25,7 @@ export default function Menus({ restaurantMenu }) {
   return (
     <>
       <Nav page={{ page: "menu" }} />
-      <div className='flex  gap-[20px] py-[30px] container'>
+      <div className='flex  gap-[20px] py-[30px] container--small'>
         <img className='w-[390px] h-[220px]' src={restaurant?.data?.imageUrl} alt='poster restaurant' />
         <div>
           {statusRestaurant === "done" ? (
@@ -41,7 +41,7 @@ export default function Menus({ restaurantMenu }) {
         </div>
       </div>
       <nav className='flex  py-[20px] border-t shadow'>
-        <div className='container'>
+        <div className='container--small'>
           <a className='text-green uppercase mr-7 ' href='/'>
             Entrées
           </a>

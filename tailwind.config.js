@@ -20,6 +20,7 @@ module.exports = {
         full: "0 0 10px 9999999px rgb(0, 0, 0, 0.5)",
       },
       gridTemplateColumns: {
+        restaurants: "repeat(auto-fill, minmax(210px, 1fr))",
         menus: "repeat(auto-fill, minmax(350px, 1fr))",
       },
     },
