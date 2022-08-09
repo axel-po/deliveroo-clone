@@ -3,7 +3,6 @@ import Nav from "../../../components/Nav/Nav";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { URL_LOGIN } from "../../../config/config";
-import { useLocation } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { authenticate } from "../../../utils/api";
 import { useAuth } from "../../../context/authContext";
@@ -48,7 +47,7 @@ export default function Login() {
     <>
       <Nav page={{ page: "login" }} />
       <section className='container font-plexSans h-full'>
-        <div className='flex justify-enter flex-col max-w-[500px] mx-auto py-[120px]'>
+        <div className='flex justify-enter flex-col max-w-[500px] mx-auto py-[12vw] md:py-[69px]'>
           <h2 className='font-bold text-2xl mb-6'>Connexion</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='grid auto-rows-auto grid-cols-2 row-gap-[20px] gap-[30px]'>
