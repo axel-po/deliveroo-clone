@@ -7,8 +7,7 @@ import { useFetchData } from "../../hooks/useFetchData";
 import { clientApi } from "../../utils/api";
 import { useLocation } from "react-router-dom";
 import CardFood from "../../components/CardFood/CardFood";
-import IconCart from "../../assets/icons/icon-cart-gray.svg";
-import { Button } from "../../components/Buttons/Buttons";
+import Cart from "../../components/Cart/Cart";
 
 export default function Menus({ restaurantMenu }) {
   /* Hooks */
@@ -80,13 +79,7 @@ export default function Menus({ restaurantMenu }) {
             )}
           </div>
         </div>
-        <aside className='sticky top-[30px] flex flex-col justify-between border font-plexSans p-[15px] h-[228px]'>
-          <div className='flex items-center flex-col py-5'>
-            <img className='w-[55px] mb-[10px]' src={IconCart} alt='icon-cart' />
-            <p className='text-[#abadad]'>Votre panier est vide</p>
-          </div>
-          <Button>Finaliser la commande</Button>
-        </aside>
+        <Cart />
       </main>
     </>
   );
