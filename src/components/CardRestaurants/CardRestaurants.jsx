@@ -17,7 +17,7 @@ export default function CardRestaurants({ id, title, imageUrl }) {
   };
   return (
     <button onClick={goToRestaurant} className='border rounded shadow cursor-pointer'>
-      <img src={imageUrl} alt='restaurant' className='w-full' />
+      <img src={process.env.REACT_APP_API_URL + imageUrl} alt='restaurant' className='w-full' />
       <div className='p-3'>
         <h6 className='text-left text-[16px] mb-2'>{title}</h6>
         <div className='flex items-center'>
