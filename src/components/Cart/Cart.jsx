@@ -18,14 +18,12 @@ export default function Cart() {
           <div className=''>
             <h5 className='text-[18px] font-bold mb-[20px]'>Votre commande</h5>
             {cart.map((item) => (
-              <>
-                <div className='grid grid-cols-[2fr_1fr] mb-[20px]'>
-                  <p>
-                    {item?.name} <span className='font-bold'>x{item?.quantity}</span>
-                  </p>
-                  <p className='justify-self-end'>{item?.price} €</p>
-                </div>
-              </>
+              <div key={item?._id} className='grid grid-cols-[2fr_1fr] mb-[20px]'>
+                <p>
+                  {item?.name} <span className='font-bold'>x{item?.quantity}</span>
+                </p>
+                <p className='justify-self-end'>{item?.price * item?.quantity} €</p>
+              </div>
             ))}
           </div>
         ) : (

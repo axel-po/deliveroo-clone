@@ -14,7 +14,7 @@ const CardFood = ({ menu }) => {
           <p className='pb-[18px] pt-[10px] txt-ellips'>{menu?.desc}</p>
           <p>{menu?.price} €</p>
         </div>
-        <img className='w-[100px] h-[100px] border object-center object-cover p-2' src={menu?.imageUrl} alt='food' />
+        <img className='w-[100px] h-[100px] border object-center object-cover p-2' src={process.env.REACT_APP_API_URL + menu?.imageUrl} alt='food' />
       </button>
       {modalOpen && <FoodModal menu={menu} setModalOpen={setModalOpen} />}
     </>
@@ -65,7 +65,7 @@ const FoodModal = ({ menu, setModalOpen }) => {
       onClick={closeModal}
       className='overlay bg-overlayColor fixed overflow-hidden h-screen inset-0 z-50 cursor-default flex items-center justify-center'>
       <div className='flex flex-col items-center rounded w-[90%] max-w-[500px] bg-white'>
-        <img className='rounded p-[20px]' src={menu?.imageUrl} alt='food' />
+        <img className='rounded p-[20px]' src={process.env.REACT_APP_API_URL + menu?.imageUrl} alt='food' />
         <div className='p-5'>
           <h3 className='text-[28px] font-stratos'>{menu?.name}</h3>
           <p className='py-[20px]'>{menu?.desc}</p>
@@ -79,7 +79,7 @@ const FoodModal = ({ menu, setModalOpen }) => {
           <button
             className='block text-center bg-green  text-white font-semibold rounded py-[12px] px-[24px] font-plexSans cursor-pointer w-full'
             onClick={addToCartState}>
-            Ajouter pour {menu?.price} €
+            Ajouter pour {menu?.price * quantity} €
           </button>
         </div>
       </div>

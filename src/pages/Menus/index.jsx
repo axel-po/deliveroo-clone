@@ -25,7 +25,7 @@ export default function Menus({ restaurantMenu }) {
     <>
       <Nav page={{ page: "menu" }} />
       <div className='flex  gap-[20px] py-[30px] container--small'>
-        <img className='w-[390px] h-[220px]' src={restaurant?.data?.imageUrl} alt='poster restaurant' />
+        <img className='w-[390px] h-[220px]' src={process.env.REACT_APP_API_URL + restaurant?.data?.imageUrl} alt='poster restaurant' />
         <div>
           {statusRestaurant === "done" ? (
             <h3 className='text-4xl font-bold'>{restaurant?.data?.title}</h3>
@@ -69,7 +69,7 @@ export default function Menus({ restaurantMenu }) {
                 ))}
               </>
             ) : (
-              <div role='status' className='flex items-center justify-between gap-[20px]   bg-gray-00 shadow animate-pulse '>
+              <div role='status' className='flex items-center justify-between gap-[20px] bg-gray-00 shadow animate-pulse '>
                 <span className='sr-only'>Loading...</span>
                 <div>
                   <div className='h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-[90%] mb-4'></div>
