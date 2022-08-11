@@ -22,7 +22,7 @@ export default function Cart() {
                 <p>
                   {item?.name} <span className='font-bold'>x{item?.quantity}</span>
                 </p>
-                <p className='justify-self-end'>{item?.price * item?.quantity} €</p>
+                <p className='justify-self-end'>{item?.price.toFixed(2) * item?.quantity} €</p>
               </div>
             ))}
           </div>

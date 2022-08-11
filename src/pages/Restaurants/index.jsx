@@ -1,6 +1,6 @@
 import Nav from "../../components/Nav/Nav";
 import { TitlePageMenu } from "../../components/Typography/Typography";
-import CardRestaurants from "../../components/CardRestaurants/CardRestaurants";
+import CardRestaurants, { CardRestaurantsSkeletons } from "../../components/CardRestaurants/CardRestaurants";
 import { URL_CATEGORY, URL_RESTAURANTS } from "../../config/config";
 import CardCategoryFood, { CardCategoryFoodSkeletons } from "../../components/CardCategoryFood/CardCategoryFood";
 import { useEffect } from "react";
@@ -39,7 +39,12 @@ export default function Restaurants() {
                 ))}
               </>
             ) : (
-              <CardCategoryFoodSkeletons />
+              <>
+                <CardCategoryFoodSkeletons />
+                <CardCategoryFoodSkeletons />
+                <CardCategoryFoodSkeletons />
+                <CardCategoryFoodSkeletons />
+              </>
             )}
           </div>
           <TitlePageMenu>À la une dans {foodCategory} </TitlePageMenu>
@@ -51,7 +56,10 @@ export default function Restaurants() {
                 ))}
               </>
             ) : (
-              <p>...</p>
+              <>
+                <CardRestaurantsSkeletons />
+                <CardRestaurantsSkeletons />
+              </>
             )}
           </div>
         </main>

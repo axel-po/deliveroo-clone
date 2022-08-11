@@ -35,7 +35,7 @@ export default function Nav({ page }) {
           {page?.page !== "login" && (
             <button className='hidden md:flex items-center gap-3 py-[8px] px-[16px] rounded border bg-white'>
               <img src={IconCart} alt='icon panier' />
-              <span>{totalPrice} €</span>
+              <span>{totalPrice.toFixed(2)} €</span>
             </button>
           )}
 
