@@ -29,7 +29,7 @@ export default function Login() {
   const onSubmit = async (formData) => {
     try {
       await authenticate(formData, URL_LOGIN);
-      navigate("/");
+      navigate(-1);
       setIsAuth(true);
     } catch (err) {
       if (err.code === "ERR_NETWORK") {
