@@ -12,7 +12,7 @@ const CardFood = ({ menu }) => {
         <div>
           <h4 className='font-extrabold uppercase'>{menu?.name}</h4>
           <p className='pb-[18px] pt-[10px] txt-ellips'>{menu?.desc}</p>
-          <p>{menu?.price} €</p>
+          <p>{menu?.price.toFixed(2)} €</p>
         </div>
         <img className='w-[100px] h-[100px] border object-center object-cover p-2' src={process.env.REACT_APP_API_URL + menu?.imageUrl} alt='food' />
       </button>
@@ -79,7 +79,7 @@ const FoodModal = ({ menu, setModalOpen }) => {
           <button
             className='block text-center bg-green  text-white font-semibold rounded py-[12px] px-[24px] font-plexSans cursor-pointer w-full'
             onClick={addToCartState}>
-            Ajouter pour {menu?.price * quantity} €
+            Ajouter pour {menu?.price.toFixed(2) * quantity} €
           </button>
         </div>
       </div>
@@ -87,4 +87,7 @@ const FoodModal = ({ menu, setModalOpen }) => {
   );
 };
 
+export const CardFoodSkeletons = () => {
+  return <div className='w-[480] h-[144px] bg-gray-200 animate-pulse'></div>;
+};
 export default CardFood;

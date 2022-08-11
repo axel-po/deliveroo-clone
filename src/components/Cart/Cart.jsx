@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import IconCart from "../../assets/icons/icon-cart-gray.svg";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/cartContext";
@@ -8,23 +8,35 @@ export default function Cart() {
   const {
     state: { cart },
   } = useCart();
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const { isAuth } = useAuth();
 
+  useEffect(() => {
+    setTotalPrice(cart.reduce((acc, curr) => acc + Number(curr.price) * curr.quantity, 0));
+  }, [cart]);
+
   return (
-    <aside className={`sticky top-[30px] flex flex-col justify-between border font-plexSans p-[15px] ${cart.length !== 0 ? "h-max" : "h-[228px]"} `}>
+    <aside
+      className={`row-[1] flex flex-col justify-between border font-plexSans p-[15px] ${
+        cart.length !== 0 ? "h-max" : "h-[228px]"
+      } md:sticky md:top-[30px] md:row-auto`}>
       <>
         {cart.length !== 0 ? (
-          <div className=''>
+          <div>
             <h5 className='text-[18px] font-bold mb-[20px]'>Votre commande</h5>
             {cart.map((item) => (
               <div key={item?._id} className='grid grid-cols-[2fr_1fr] mb-[20px]'>
                 <p>
                   {item?.name} <span className='font-bold'>x{item?.quantity}</span>
                 </p>
-                <p className='justify-self-end'>{item?.price * item?.quantity} €</p>
+                <p className='justify-self-end'>{item?.price.toFixed(2) * item?.quantity} €</p>
               </div>
             ))}
+            <div className='flex justify-between font-bold mt-[45px] mb-[15px]'>
+              <p>Total</p>
+              <span>{totalPrice.toFixed(2)} €</span>
+            </div>
           </div>
         ) : (
           <div className='flex items-center flex-col py-5'>

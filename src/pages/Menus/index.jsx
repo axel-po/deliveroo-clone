@@ -6,7 +6,7 @@ import { URL_ONE_RESTAURANT, URL_MENUS } from "../../config/config";
 import { useFetchData } from "../../hooks/useFetchData";
 import { clientApi } from "../../utils/api";
 import { useLocation } from "react-router-dom";
-import CardFood from "../../components/CardFood/CardFood";
+import CardFood, { CardFoodSkeletons } from "../../components/CardFood/CardFood";
 import Cart from "../../components/Cart/Cart";
 
 export default function Menus({ restaurantMenu }) {
@@ -24,13 +24,21 @@ export default function Menus({ restaurantMenu }) {
   return (
     <>
       <Nav page={{ page: "menu" }} />
-      <div className='flex  gap-[20px] py-[30px] container--small'>
-        <img className='w-[390px] h-[220px]' src={process.env.REACT_APP_API_URL + restaurant?.data?.imageUrl} alt='poster restaurant' />
+      <div className='flex flex-col gap-[20px] py-[30px] container--small md:flex-row'>
+        {statusRestaurant === "done" ? (
+          <img
+            className='w-full md:w-[390px] md:h-[220px]'
+            src={process.env.REACT_APP_API_URL + restaurant?.data?.imageUrl}
+            alt='poster restaurant'
+          />
+        ) : (
+          <div className='border rounded shadow cursor-pointer  bg-gray-200 animate-pulse w-full max-w-[390px] min-h-[210px] h-[80%]'></div>
+        )}
         <div>
           {statusRestaurant === "done" ? (
             <h3 className='text-4xl font-bold'>{restaurant?.data?.title}</h3>
           ) : (
-            <h3 className='text-4xl font-bold'>...</h3>
+            <p className='w-[200px] h-[30px] rounded bg-gray-200 animate-pulse'></p>
           )}
           <p className='text pt-2'>10 - 20 min</p>
           <div className='flex items-center'>
@@ -39,26 +47,16 @@ export default function Menus({ restaurantMenu }) {
           </div>
         </div>
       </div>
-      <nav className='flex  py-[20px] border-t shadow'>
+      <nav className='flex py-[20px] border-t shadow'>
         <div className='container--small'>
-          <a className='text-green uppercase mr-7 ' href='/'>
-            Entrées
-          </a>
-          <a className='text-green uppercase mr-7' href='/'>
-            Accompagnements
-          </a>
-          <a className='text-green uppercase mr-7' href='/'>
-            Sauces
-          </a>
-          <a className='text-green uppercase mr-7' href='/'>
-            Dessert
-          </a>
-          <a className='text-green uppercase mr-7' href='/'>
-            Boissons
-          </a>
+          <button className='text-green uppercase mr-7'>Entrées</button>
+          <button className='text-green uppercase mr-7'>Accompagnements</button>
+          <button className='text-green uppercase mr-7'>Sauces</button>
+          <button className='text-green uppercase mr-7'>Dessert</button>
+          <button className='text-green uppercase mr-7'>Boissons</button>
         </div>
       </nav>
-      <main className='grid grid-cols-1fr md:grid-cols-[1fr_420px] gap-[25px] container--small py-[40px] '>
+      <main className='grid grid-cols-1fr gap-[25px] container--small py-[40px] md:grid-cols-[1fr_420px]'>
         <div>
           <Title>Menus</Title>
           <div className='grid grid-cols-menus gap-4'>
@@ -69,13 +67,12 @@ export default function Menus({ restaurantMenu }) {
                 ))}
               </>
             ) : (
-              <div role='status' className='flex items-center justify-between gap-[20px] bg-gray-00 shadow animate-pulse '>
-                <span className='sr-only'>Loading...</span>
-                <div>
-                  <div className='h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-[90%] mb-4'></div>
-                  <div className='h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-[90%] mb-4'></div>
-                </div>
-              </div>
+              <>
+                <CardFoodSkeletons />
+                <CardFoodSkeletons />
+                <CardFoodSkeletons />
+                <CardFoodSkeletons />
+              </>
             )}
           </div>
         </div>
