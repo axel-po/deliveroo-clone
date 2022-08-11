@@ -5,17 +5,26 @@ import IconHome from "../../assets/icons/icon-home.svg";
 import IconMenu from "../../assets/icons/icon-menu.svg";
 import { Link } from "react-router-dom";
 import NavMenu from "../NavMenu/NavMenu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../context/authContext";
+import { useCart } from "../../context/cartContext";
 
 export default function Nav({ page }) {
   const [showMenu, setShowMenu] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0.0);
   const { isAuth } = useAuth();
+  const {
+    state: { cart },
+  } = useCart();
+
+  useEffect(() => {
+    setTotalPrice(cart.reduce((acc, curr) => acc + Number(curr.price) * curr.quantity, 0));
+  }, [cart]);
 
   return (
     <nav className={`${page?.page === "login" || page?.page === "menu" ? " py-[14px]  border-b" : "lg: w-full py-[14px]"}`}>
       <div className='flex justify-between container'>
-        <Link to='/'>
+        <Link to='/' className='z-[10]'>
           {page?.page === "login" || page?.page === "menu" ? (
             <img src={LogoGreen} alt='logo deliveroo' className='w-[112px] h-[32px]' />
           ) : (
@@ -26,8 +35,7 @@ export default function Nav({ page }) {
           {page?.page !== "login" && (
             <button className='hidden md:flex items-center gap-3 py-[8px] px-[16px] rounded border bg-white'>
               <img src={IconCart} alt='icon panier' />
-              {/* width='18' height='18'  */}
-              <span>0,00 €</span>
+              <span>{totalPrice} €</span>
             </button>
           )}
 

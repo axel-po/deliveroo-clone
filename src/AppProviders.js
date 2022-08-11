@@ -1,6 +1,7 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import { AuthContextProvider } from "./context/authContext";
+import { CartContextProvider } from "./context/cartContext";
 import { CityContextProvider } from "./context/cityContext";
 
 export default function AppProviders({ children }) {
@@ -8,8 +9,10 @@ export default function AppProviders({ children }) {
     <Router>
       <AuthContextProvider>
         <CityContextProvider>
-          <ScrollToTop />
-          {children}
+          <CartContextProvider>
+            <ScrollToTop />
+            {children}
+          </CartContextProvider>
         </CityContextProvider>
       </AuthContextProvider>
     </Router>

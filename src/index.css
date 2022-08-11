@@ -27,10 +27,23 @@
   margin: 0 auto;
 }
 
+.container--small {
+  max-width: 1300px;
+  width: 90%;
+  margin: 0 auto;
+}
+
 .clip-img {
   clip-path: polygon(0 0, 100% 0, 88% 100%, 0% 100%);
 }
 
 .clip-left-img {
   clip-path: polygon(6% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.txt-ellips {
+  text-overflow: ellipsis;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
 }
