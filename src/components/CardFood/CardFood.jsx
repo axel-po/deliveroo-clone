@@ -87,4 +87,7 @@ const FoodModal = ({ menu, setModalOpen }) => {
   );
 };
 
+export const CardFoodSkeletons = () => {
+  return <div className='w-[480] h-[144px] bg-gray-200 animate-pulse'></div>;
+};
 export default CardFood;

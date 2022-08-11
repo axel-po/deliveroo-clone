@@ -12,10 +12,11 @@ export default function Cart() {
   const { isAuth } = useAuth();
 
   return (
-    <aside className={`sticky top-[30px] flex flex-col justify-between border font-plexSans p-[15px] ${cart.length !== 0 ? "h-max" : "h-[228px]"} `}>
+    <aside
+      className={`row-[1] flex flex-col justify-between border font-plexSans p-[15px] ${cart.length !== 0 ? "h-max" : "h-[228px]"} md:sticky md:top-[30px] md:row-auto`}>
       <>
         {cart.length !== 0 ? (
-          <div className=''>
+          <div>
             <h5 className='text-[18px] font-bold mb-[20px]'>Votre commande</h5>
             {cart.map((item) => (
               <div key={item?._id} className='grid grid-cols-[2fr_1fr] mb-[20px]'>
