@@ -36,7 +36,7 @@ Mot de passe :  **123456**
 
 ## Backend
 
-Voici le repos de l'API utilisé pour ce projet : https://github.com/axel-po/api-deliveroo-clone
+Voici le repos de l'API utilisée pour ce projet : https://github.com/axel-po/api-deliveroo-clone
 
 
 ## Preview, Screenshots
