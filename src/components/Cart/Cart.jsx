@@ -3,6 +3,7 @@ import IconCart from "../../assets/icons/icon-cart-gray.svg";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/cartContext";
 import { useAuth } from "../../context/authContext";
+import { formatPrice } from "../../utils/helpers";
 
 export default function Cart() {
   const {
