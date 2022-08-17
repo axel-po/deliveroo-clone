@@ -28,3 +28,7 @@ export default function CardRestaurants({ id, title, imageUrl }) {
     </button>
   );
 }
+
+export const CardRestaurantsSkeletons = () => {
+  return <div className='border rounded shadow cursor-pointer  bg-gray-200 animate-pulse w-full min-h-[210px]'></div>;
+};
