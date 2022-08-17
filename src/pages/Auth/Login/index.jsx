@@ -59,7 +59,6 @@ export default function Login() {
                   id='email'
                   placeholder='par ex. elonmusk@aws.com'
                   {...register("email")}
-                  defaultValue={"axelpo2@free.fr"}
                 />
                 {errors.email && <span className=' text-red-600 text-xs'>{errors.email.message}</span>}
               </div>
@@ -71,7 +70,6 @@ export default function Login() {
                   id='password'
                   placeholder='par ex. 123456 (ou pas)'
                   {...register("password")}
-                  defaultValue={"123456"}
                 />
                 {errors.password && <span className=' text-red-600 text-xs'>{errors.password.message}</span>}
               </div>

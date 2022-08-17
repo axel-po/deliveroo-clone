@@ -25,7 +25,7 @@ export default function Menus({ restaurantMenu }) {
     <>
       <Nav page={{ page: "menu" }} />
       <div className='flex flex-col gap-[20px] py-[30px] container--small md:flex-row'>
-        {statusRestaurant === "done" ? (
+        {statusMenus === "done" ? (
           <img
             className='w-full md:w-[390px] md:h-[220px]'
             src={process.env.REACT_APP_API_URL + restaurant?.data?.imageUrl}
@@ -34,6 +34,7 @@ export default function Menus({ restaurantMenu }) {
         ) : (
           <div className='border rounded shadow cursor-pointer  bg-gray-200 animate-pulse w-full max-w-[390px] min-h-[210px] h-[80%]'></div>
         )}
+
         <div>
           {statusRestaurant === "done" ? (
             <h3 className='text-4xl font-bold'>{restaurant?.data?.title}</h3>
